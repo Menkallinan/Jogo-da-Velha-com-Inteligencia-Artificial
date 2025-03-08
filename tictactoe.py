@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Recriação do Jogo da Velha
-
-@author: Prof. Daniel Cavalcanti Jeronymo
+Recriação do Jogo da Velha do Prof. Daniel Cavalcanti Jeronymo
 """
 
 import pygame
@@ -45,7 +43,7 @@ class Game:
         def __init__(self):
             # 0 empty, 1 X, 2 O
             self.grid = np.zeros((GameConstants.gridHeight, GameConstants.gridWidth), dtype=int)
-            self.currentPlayer = 1
+            self.currentPlayer = 1  # Começa com o jogador X
 
     def __init__(self, expectUserInputs=True):
         self.expectUserInputs = expectUserInputs
@@ -70,100 +68,84 @@ class Game:
                     successors.append((row, col, new_gs))
         return successors
 
-    def dfs(self, gs, visited):
-        # Serialize grid to check for revisited states
-        grid_tuple = tuple(map(tuple, gs.grid))
-        if grid_tuple in visited:
-            return 0  # Empate (estado já visitado)
-        visited.add(grid_tuple)
-
-        # Check if the current state is a winning state
+    def minimax(self, gs, depth, isMaximizing):
         result = self.checkObjectiveState(gs)
-        if result != 0:
-            return 1 if result == 1 else -1 if result == 2 else 0
+        if result == 1:  # Vitória de X
+            return 10 - depth
+        elif result == 2:  # Vitória de O
+            return depth - 10
+        elif result == 3:  # Empate
+            return 0
 
-        # Generate successors
-        successors = self.generateSuccessors(gs)
-        if not successors:
-            return 0  # Empate se não houver movimentos possíveis
-
-        # Avaliar cada estado sucessor
-        scores = []
-        for _, _, new_gs in successors:
-            scores.append(self.dfs(new_gs, visited.copy()))
-
-        # Escolher o melhor resultado para o jogador atual
-        if gs.currentPlayer == 1:
-            return max(scores)
-        else:
-            return min(scores)
-
+        if isMaximizing:  # Jogador X (maximiza)
+            best_score = -float('inf')
+            for _, _, new_gs in self.generateSuccessors(gs):
+                score = self.minimax(new_gs, depth + 1, False)
+                best_score = max(best_score, score)
+            return best_score
+        else:  # Jogador O (minimiza)
+            best_score = float('inf')
+            for _, _, new_gs in self.generateSuccessors(gs):
+                score = self.minimax(new_gs, depth + 1, True)
+                best_score = min(best_score, score)
+            return best_score
 
     def oracle(self):
-        gs = self.states[-1]  # Estado game atual
-        best_score = -float('inf')
+        gs = self.states[-1]  # Estado atual do jogo
+        best_score = -float('inf') if gs.currentPlayer == 1 else float('inf')
         best_move = None
 
         for row, col, new_gs in self.generateSuccessors(gs):
-            score = self.dfs(new_gs, set())
-            if score > best_score:
+            # Se o jogador atual é X, maximiza; se é O, minimiza
+            isMaximizing = gs.currentPlayer == 1
+            score = self.minimax(new_gs, 0, not isMaximizing)
+
+            if (gs.currentPlayer == 1 and score > best_score) or (gs.currentPlayer == 2 and score < best_score):
                 best_score = score
                 best_move = (row, col)
 
         return best_move
 
     def checkObjectiveState(self, gs):
-        
         for i in range(GameConstants.gridHeight):
             if np.all(gs.grid[i, :] == 1) or np.all(gs.grid[:, i] == 1):
-                return 1
+                return 1  # Vitória de X
             if np.all(gs.grid[i, :] == 2) or np.all(gs.grid[:, i] == 2):
-                return 2
+                return 2  # Vitória de O
 
-        # Checagem diagnoias
         if np.all(np.diag(gs.grid) == 1) or np.all(np.diag(np.fliplr(gs.grid)) == 1):
-            return 1
+            return 1  # Vitória de X
         if np.all(np.diag(gs.grid) == 2) or np.all(np.diag(np.fliplr(gs.grid)) == 2):
-            return 2
+            return 2  # Vitória de O
 
-    
         if not np.any(gs.grid == 0):
-            return 3
+            return 3  # Empate
 
-        # Sem vencedores
-        return 0
+        return 0  # Jogo ainda em andamento
 
     def update(self):
         if not self.alive or not self.eventJournal:
             return
 
-        # Get the current (last) game state
         gs = copy.deepcopy(self.states[-1])
-
-        # Mark the cell clicked by this player if it's an empty cell
         x, y = self.eventJournal.pop()
 
-        # Check if in bounds
         if 0 <= x < GameConstants.gridHeight and 0 <= y < GameConstants.gridWidth and gs.grid[x][y] == 0:
             gs.grid[x][y] = gs.currentPlayer
-            gs.currentPlayer = 3 - gs.currentPlayer  # Switch player
+            gs.currentPlayer = 3 - gs.currentPlayer  # Alternar jogador
 
-            # check if end of game
             if self.checkObjectiveState(gs):
                 self.alive = False
 
-           # Add the new modified state
             self.states.append(gs)
 
 
 def drawGrid(screen, game):
     screen.fill(GameConstants.BackgroundColor)
 
-    # Get the current game state
     gs = game.states[-1]
     grid = gs.grid
 
-    # Draw the grid
     for row in range(GameConstants.gridHeight):
         for col in range(GameConstants.gridWidth):
             color = GameConstants.ColorWhite
@@ -184,11 +166,8 @@ def initialize():
     game = Game()
     font = pygame.font.SysFont('Courier', GameConstants.fontSize)
     fpsClock = pygame.time.Clock()
-
-    # Create display surface
     screen = pygame.display.set_mode((GameConstants.screenWidth, GameConstants.screenHeight), pygame.DOUBLEBUF)
     screen.fill(GameConstants.BackgroundColor)
-
     return screen, font, game, fpsClock
 
 
@@ -200,11 +179,9 @@ def handleEvents(game):
             row = pos[1] // (GameConstants.screenHeight // GameConstants.gridHeight)
             game.eventJournal.append((row, col))
 
-            # Atualizar o estado do jogo antes de sugerir a melhor jogada
             game.update()
 
-            # Sugerir a melhor jogada usando o oracle
-            if game.alive:  # Certificar que o jogo ainda está em andamento
+            if game.alive:
                 best_move = game.oracle()
                 if best_move:
                     print(f"Melhor jogada sugerida: {best_move}")
@@ -213,27 +190,18 @@ def handleEvents(game):
             pygame.quit()
             sys.exit()
 
+
 def mainGamePlayer():
     try:
-        # Initialize pygame and etc.
         screen, font, game, fpsClock = initialize()
 
-        # Main game loop
         while game.alive:
-            # Handle events
             handleEvents(game)
-
-            # Update world
             game.update()
-
-            # Draw this world frame
             drawGrid(screen, game)
             pygame.display.flip()
-
-            # Delay for required FPS
             fpsClock.tick(GameConstants.FPS)
 
-        # Close pygame
         pygame.quit()
     except SystemExit:
         pass
