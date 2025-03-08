@@ -77,7 +77,7 @@ O código está organizado em classes e funções principais:
 ## Como Jogar
 
 - Clique em uma célula para fazer sua jogada.
-- O jogo alterna automaticamente entre os jogadores (X e O).
+- O jogo alterna automaticamente entre os jogadores (vermelho e azul).
 - A IA sugere a melhor jogada para o jogador atual no console.
 - O jogo termina quando há um vencedor ou empate.
 
@@ -85,8 +85,8 @@ O código está organizado em classes e funções principais:
 
 A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a partir do estado atual. Ela avalia cada estado sucessor e escolhe a jogada que:
 
-- Maximiza as chances de vitória para X.
-- Minimiza as chances de vitória para O.
+- Maximiza as chances de vitória para vermelho.
+- Minimiza as chances de vitória para azul.
 
 ## Melhorias Implementadas
 
@@ -95,8 +95,10 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 
 ## Exemplo de Saída
 
-Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. No console, a IA sugerirá a melhor jogada para o jogador atual, como no exemplo abaixo:
-
+Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
+<div style="display: flex; justify-content: center;">
+    <img src="[/Jogo-da-Velha-com-Inteligencia-Artificial/issues/1](https://github.com/Menkallinan/Jogo-da-Velha-com-Inteligencia-Artificial/issues/1)" alt="Tela do jogo da velha">
+</div>
 ```bash
 Melhor jogada sugerida: (0, 1)
 ```
