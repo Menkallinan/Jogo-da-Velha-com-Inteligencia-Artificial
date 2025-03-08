@@ -112,7 +112,7 @@ Melhor jogada sugerida: (2, 2)
 No exemplo apresentado, é possível mapear todas as jogadas quando o vermelho inicia no centro. Vale destacar que, ao seguir todas as sugestões da IA, o jogo sempre terminará em empate.
 ## Considerações Finais
 
-Este projeto foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, e a parte da inteligência artificial foi implementada por mim. A IA agora sugere jogadas ótimas para ambos os jogadores, tornando o jogo mais desafiador e justo.
+Este projeto foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, e a parte da inteligência artificial foi implementada por mim. A IA agora sugere jogadas ótimas para ambos os jogadores, tornando-se um ótimo treinamento para quem deseja aprimorar suas habilidades em jogo da velha.
 
-Divirta-se jogando! 🎮
+Divirta-se treinando! 🎮
 
