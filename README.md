@@ -96,7 +96,8 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 ## Exemplo de Saída
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
-<img src="https://github.com/user-attachments/assets/beefdda1-ffa3-408c-bb99-e417719cb325" alt="Nova descrição" style="max-width: 100%; height: auto;">
+
+<img src="https://github.com/user-attachments/assets/beefdda1-ffa3-408c-bb99-e417719cb325" alt="Tela do jogo da velha" style="max-width: 100%; height: auto;">
 
 ```bash
 Melhor jogada sugerida: (0, 1)
