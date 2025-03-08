@@ -96,9 +96,9 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 ## Exemplo de Saída
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
-<div style="display: flex; justify-content: center;">
-    <img src="[/Jogo-da-Velha-com-Inteligencia-Artificial/issues/1](https://github.com/Menkallinan/Jogo-da-Velha-com-Inteligencia-Artificial/issues/1)" alt="Tela do jogo da velha">
-</div>
+<p align="center">
+  <img src="[LINK-DA-IMAGEM](https://github.com/Menkallinan/Jogo-da-Velha-com-Inteligencia-Artificial/issues/1#issue-2905028046)" alt="Tela do jogo da velha">
+</p>
 ```bash
 Melhor jogada sugerida: (0, 1)
 ```
