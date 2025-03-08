@@ -93,7 +93,7 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 - A função `minimax` foi ajustada para garantir que a IA sugira jogadas ótimas para ambos os jogadores (vermelho e azul).
 - A função `oracle` diferencia entre vermelho e azul, chamando o Minimax com os parâmetros corretos.
 
-## Exemplo de Saída
+## Exemplo de funcionamento
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
 
