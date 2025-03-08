@@ -96,7 +96,7 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 ## Exemplo de Saída
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
-![Tela do jogo da velha](https://private-user-images.githubusercontent.com/96364366/420625638-97a30567-1b88-4d9f-9716-bb4c5d41f0d3.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDE0NzA2NzcsIm5iZiI6MTc0MTQ3MDM3NywicGF0aCI6Ii85NjM2NDM2Ni80MjA2MjU2MzgtOTdhMzA1NjctMWI4OC00ZDlmLTk3MTYtYmI0YzVkNDFmMGQzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA4VDIxNDYxN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTAzZmM3NWU0ZGViNjhlZTNkMzU1OTAyMDg2ZWEwMjcxMWYyNmE1ZWRlZDVmMTliNTFlM2JkYzkxMWY2OWUzOGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.ilUrC7ZbFyNynvrLXnasIaNeaotoF2a6eglk1gARtcM)
+![Image](https://github.com/user-attachments/assets/beefdda1-ffa3-408c-bb99-e417719cb325)
 ```bash
 Melhor jogada sugerida: (0, 1)
 ```
