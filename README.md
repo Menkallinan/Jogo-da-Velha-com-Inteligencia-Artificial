@@ -97,12 +97,19 @@ A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. Na primeira rodada, não haverá sugestão de jogada pelo console; essa análise ocorrerá após a primeira escolha do jogador vermelho.
 
-<img src="https://github.com/user-attachments/assets/beefdda1-ffa3-408c-bb99-e417719cb325" alt="Tela do jogo da velha" style="max-width: 100%; height: auto;">
+<img src="https://github.com/user-attachments/assets/16507f1e-11ff-42c7-82ea-624687be473a" alt="Tela do jogo da velha" style="max-width: 100%; height: auto;">
 
 ```bash
+Melhor jogada sugerida: (0, 0)
 Melhor jogada sugerida: (0, 1)
+Melhor jogada sugerida: (2, 1)
+Melhor jogada sugerida: (1, 0)
+Melhor jogada sugerida: (1, 2)
+Melhor jogada sugerida: (0, 2)
+Melhor jogada sugerida: (2, 0)
+Melhor jogada sugerida: (2, 2)
 ```
-
+No exemplo apresentado, é possível mapear todas as jogadas quando o vermelho inicia no centro. Vale destacar que, ao seguir todas as sugestões da IA, o jogo sempre terminará em empate.
 ## Considerações Finais
 
 Este projeto foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, e a parte da inteligência artificial foi implementada por mim. A IA agora sugere jogadas ótimas para ambos os jogadores, tornando o jogo mais desafiador e justo.
