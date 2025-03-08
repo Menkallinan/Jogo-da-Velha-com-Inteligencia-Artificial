@@ -1,37 +1,47 @@
 # Jogo da Velha com Inteligência Artificial
 
-Este projeto é uma recriação do clássico Jogo da Velha, desenvolvido em Python com a biblioteca Pygame. O jogo foi proposto pelo Prof. Daniel Cavalcanti Jeronymo, que também desenvolveu boa parte da estrutura inicial do código. O projeto inclui uma funcionalidade de inteligência artificial que sugere a melhor jogada para o jogador atual, utilizando uma abordagem de busca em profundidade (DFS) para avaliar os possíveis estados do jogo.
+Este projeto é uma recriação do clássico Jogo da Velha, desenvolvido em Python com a biblioteca pygame. O jogo foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, e inclui uma inteligência artificial (IA) que sugere a melhor jogada para o jogador atual. A IA utiliza o algoritmo Minimax para avaliar os possíveis estados do jogo e tomar decisões ótimas.
+
+## Funcionalidades
+
+- **Jogo da Velha tradicional**: Jogue em uma grade 3x3, alternando entre vermelho e azul.
+- **Inteligência Artificial**: A IA sugere a melhor jogada para o jogador atual, vermelho ou azul.
+- **Interface gráfica**: Desenvolvida com pygame, proporcionando uma experiência visual e interativa.
+- **Algoritmo Minimax**: A IA usa o Minimax para calcular jogadas ótimas, garantindo que o jogo seja desafiador.
 
 ## Requisitos
 
 Para executar este projeto, você precisará das seguintes dependências:
 
 - Python 3.x
-- Biblioteca Pygame
-- Biblioteca NumPy
+- Biblioteca pygame
+- Biblioteca numpy
 
-### Instalação das Dependências
+## Instalação das Dependências
 
-1. **Verifique a versão do Python**:
+1. **Instale o Python 3.x**:
+   Certifique-se de que o Python 3.x está instalado no seu sistema. Você pode verificar a versão do Python com o comando:
    ```bash
    python3 --version
    ```
 
-2. **Instale o Pygame**:
+2. **Instale o pygame**:
+   Se ainda não tiver o pygame instalado, você pode instalá-lo usando o pip:
    ```bash
    pip3 install pygame
    ```
 
-3. **Instale o NumPy**:
+3. **Instale o numpy**:
+   O numpy é usado para manipulação de matrizes. Instale-o com:
    ```bash
    pip3 install numpy
    ```
 
 ## Estrutura do Código
 
-O código está organizado em uma única classe principal (`Game`) que gerencia o estado do jogo, a lógica de atualização e a renderização. Abaixo está uma visão geral das principais partes do código:
+O código está organizado em classes e funções principais:
 
-### Classes e Métodos Principais
+### Classes Principais
 
 - **GameConstants**:
   - Contém constantes usadas no jogo, como cores, dimensões da tela, tamanho da grade e configurações de fonte.
@@ -40,20 +50,22 @@ O código está organizado em uma única classe principal (`Game`) que gerencia 
   - Gerencia o estado do jogo, incluindo a grade, o jogador atual e a lista de estados anteriores.
   - Métodos principais:
     - `generateSuccessors`: Gera todos os possíveis estados sucessores a partir do estado atual.
-    - `dfs`: Realiza uma busca em profundidade para avaliar os possíveis estados do jogo e determinar a melhor jogada.
-    - `oracle`: Usa o método DFS para sugerir a melhor jogada para o jogador atual.
+    - `minimax`: Implementa o algoritmo Minimax para avaliar os estados do jogo.
+    - `oracle`: Usa o Minimax para sugerir a melhor jogada para o jogador atual.
     - `checkObjectiveState`: Verifica se o jogo terminou (vitória, derrota ou empate).
     - `update`: Atualiza o estado do jogo com base nas entradas do usuário.
 
-- **Funções de Renderização**:
-  - `drawGrid`: Desenha a grade do jogo na tela, colorindo as células com base no estado atual.
-  - `initialize`: Inicializa o Pygame, a fonte, o relógio e a superfície de exibição.
+### Funções de Renderização
 
-- **Funções de Controle**:
-  - `handleEvents`: Captura eventos do usuário, como cliques do mouse, e atualiza o estado do jogo.
-  - `mainGamePlayer`: Função principal que executa o loop do jogo, atualizando e renderizando o estado do jogo a cada quadro.
+- `drawGrid`: Desenha a grade do jogo na tela, colorindo as células com base no estado atual.
+- `initialize`: Inicializa o pygame, a fonte, o relógio e a superfície de exibição.
 
-## Executando o Jogo
+### Funções de Controle
+
+- `handleEvents`: Captura eventos do usuário, como cliques do mouse, e atualiza o estado do jogo.
+- `mainGamePlayer`: Função principal que executa o loop do jogo, atualizando e renderizando o estado do jogo a cada quadro.
+
+## Como Executar
 
 1. Clone o repositório ou baixe o arquivo `tictactoe.py`.
 2. Navegue até o diretório onde o arquivo está localizado.
@@ -66,32 +78,32 @@ O código está organizado em uma única classe principal (`Game`) que gerencia 
 
 - Clique em uma célula para fazer sua jogada.
 - O jogo alterna automaticamente entre os jogadores (X e O).
-- A inteligência artificial sugere a melhor jogada para o jogador atual no console.
+- A IA sugere a melhor jogada para o jogador atual no console.
 - O jogo termina quando há um vencedor ou empate.
 
 ## Inteligência Artificial
 
-A IA usa uma abordagem de busca em profundidade (DFS) para explorar todos os possíveis estados do jogo a partir do estado atual. Ela avalia cada estado sucessor e escolhe a jogada que maximiza as chances de vitória para o jogador atual (X) e minimiza as chances de vitória para o oponente (O).
+A IA usa o algoritmo Minimax para explorar todos os possíveis estados do jogo a partir do estado atual. Ela avalia cada estado sucessor e escolhe a jogada que:
 
-## Personalização
+- Maximiza as chances de vitória para X.
+- Minimiza as chances de vitória para O.
 
-Você pode personalizar o jogo alterando as constantes na classe `GameConstants`, como o tamanho da grade, as cores e as dimensões da tela.
+## Melhorias Implementadas
+
+- A função `minimax` foi ajustada para garantir que a IA sugira jogadas ótimas para ambos os jogadores (vermelho e azul).
+- A função `oracle` diferencia entre vermelho e azul, chamando o Minimax com os parâmetros corretos.
 
 ## Exemplo de Saída
 
 Ao executar o jogo, você verá uma janela com a grade do Jogo da Velha. No console, a IA sugerirá a melhor jogada para o jogador atual, como no exemplo abaixo:
 
 ```bash
-Melhor jogada sugerida: (1, 1)
+Melhor jogada sugerida: (0, 1)
 ```
 
 ## Considerações Finais
 
-Este projeto é uma implementação simples, mas eficaz, do Jogo da Velha com uma IA básica. Ele foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, que criou a estrutura do jogo e a parte gráfica. A parte da inteligência artificial e da lógica para melhores jogadas foi desenvolvida por mim. O projeto pode ser expandido para incluir funcionalidades adicionais, como:
-
-- Um modo de dois jogadores.
-- Diferentes níveis de dificuldade.
-- Uma interface gráfica mais elaborada.
+Este projeto foi proposto e parcialmente desenvolvido pelo Prof. Daniel Cavalcanti Jeronymo, e a parte da inteligência artificial foi implementada por mim. A IA agora sugere jogadas ótimas para ambos os jogadores, tornando o jogo mais desafiador e justo.
 
 Divirta-se jogando! 🎮
 
